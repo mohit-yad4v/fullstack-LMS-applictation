@@ -15,13 +15,31 @@ import { useState } from "react";
 const Login = () => {
   const [signupInput, setSignupInput] = useState({
     name: "",
-    emaail: "",
-    password: "",
-  });
-  const [login, setLogin] = useState({
     email: "",
     password: "",
   });
+  const [loginInput, setLoginInput] = useState({
+    email: "",
+    password: "",
+  });
+
+  const changeInputHandler = (e, type) => {
+    const { name, value } = e.target;
+
+    if (type === "signup") {
+      setSignupInput({...signupInput , [name]: value})
+    } else {
+      setLoginInput({...loginInput,[name] : value})
+    }
+  }
+
+  const handleRegistration = (type) => {
+    const inputData = type === "signup" ? signupInput : loginInput
+    
+    console.log(inputData);
+    
+  }
+
   return (
     <div className="flex w-full justify-center items-center">
       <div className="flex w-full max-w-sm flex-col gap-6">
@@ -43,8 +61,11 @@ const Login = () => {
                   <Label htmlFor="name">Name</Label>
                   <Input
                     type="text"
+                    name="name"
+                    value={signupInput.name}
+                    onChange={(e) => changeInputHandler(e, "signup")}
                     placeholder="Name"
-                    required="true"
+                    required={true}
                     className="capitalize"
                   />
                 </div>
@@ -52,21 +73,27 @@ const Login = () => {
                   <Label htmlFor="email">Email</Label>
                   <Input
                     type="email"
+                    name="email"
+                    value={signupInput.email}
+                    onChange={(e) => changeInputHandler(e, "signup")}
                     placeholder="abc@example.com"
-                    required="true"
+                    required={true}
                   />
                 </div>
                 <div className="grid gap-3">
                   <Label htmlFor="password">Password</Label>
                   <Input
                     type="password"
+                    name="password"
+                    value={signupInput.password}
+                    onChange={(e) => changeInputHandler(e, "signup")}
                     placeholder="Password"
-                    required="true"
+                    required={true}
                   />
                 </div>
               </CardContent>
               <CardFooter>
-                <Button>Signup</Button>
+                <Button onClick = {() => handleRegistration("signup")}>Signup</Button>
               </CardFooter>
             </Card>
           </TabsContent>
@@ -83,21 +110,27 @@ const Login = () => {
                   <Label htmlFor="email">Email</Label>
                   <Input
                     type="email"
+                    name="email"
+                    value={loginInput.email}
+                    onChange={(e) => changeInputHandler(e, "login")}
                     placeholder="abc@example.com"
-                    required="true"
+                    required={true}
                   />
                 </div>
                 <div className="grid gap-3">
                   <Label htmlFor="password">Password</Label>
                   <Input
                     type="password"
+                    name="password"
+                    value={loginInput.password}
+                    onChange={(e) => changeInputHandler(e, "login")}
                     placeholder="Password"
-                    required="true"
+                    required={true}
                   />
                 </div>
               </CardContent>
               <CardFooter>
-                <Button>Login</Button>
+                <Button onClick = {() => handleRegistration("login")}>Login</Button>
               </CardFooter>
             </Card>
           </TabsContent>
