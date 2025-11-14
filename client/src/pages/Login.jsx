@@ -27,18 +27,17 @@ const Login = () => {
     const { name, value } = e.target;
 
     if (type === "signup") {
-      setSignupInput({...signupInput , [name]: value})
+      setSignupInput({ ...signupInput, [name]: value });
     } else {
-      setLoginInput({...loginInput,[name] : value})
+      setLoginInput({ ...loginInput, [name]: value });
     }
-  }
+  };
 
   const handleRegistration = (type) => {
-    const inputData = type === "signup" ? signupInput : loginInput
-    
+    const inputData = type === "signup" ? signupInput : loginInput;
+
     console.log(inputData);
-    
-  }
+  };
 
   return (
     <div className="flex w-full justify-center items-center">
@@ -93,7 +92,9 @@ const Login = () => {
                 </div>
               </CardContent>
               <CardFooter>
-                <Button onClick = {() => handleRegistration("signup")}>Signup</Button>
+                <Button onClick={() => handleRegistration("signup")}>
+                  Signup
+                </Button>
               </CardFooter>
             </Card>
           </TabsContent>
@@ -130,7 +131,9 @@ const Login = () => {
                 </div>
               </CardContent>
               <CardFooter>
-                <Button onClick = {() => handleRegistration("login")}>Login</Button>
+                <Button onClick={() => handleRegistration("login")}>
+                  Login
+                </Button>
               </CardFooter>
             </Card>
           </TabsContent>
